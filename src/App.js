@@ -4,12 +4,11 @@ import api from "./services/api";
 import "./App.css";
 
 export default function App() {
-  var getOneDay;
   const [day, setDay] = useState();
   const [period, setPeriod] = useState();
-  const [formatFirstDay, setFormatFirstDay] = useState();
   const [formatOneDay, setFormatOneDay] = useState();
-  const [selectValue, setSelectValue] = useState();
+  const [formatFirstDay, setFormatFirstDay] = useState();
+  const [formatFinalDay, setFormatFinalDay] = useState();
   const list = [
     {
       id: 0,
@@ -28,22 +27,26 @@ export default function App() {
     },
   ];
 
-  function getDate(e) {
-    getOneDay = e.target.value;
+  function getDay(e) {
+    const getOneDay = e.target.value;
+    const dayOfWeek = moment(`${getOneDay}`).isoWeekday();
+    if (dayOfWeek === 6 || dayOfWeek === 7) {
+      alert("Sábado e domingo não há cotação.");
+    }
     setFormatOneDay(moment(`${getOneDay}`, "YYYY-MM-DD").format("MM-DD-YYYY"));
   }
 
   function getInitialDate(e) {
     const getFirstDay = e.target.value;
+    alert("ATENÇÃO: Sábado e domingo não há cotação.");
     setFormatFirstDay(
       moment(`${getFirstDay}`, "YYYY-MM-DD").format("MM-DD-YYYY")
     );
   }
   function getFinalDate(e) {
-    setSelectValue(
+    setFormatFinalDay(
       moment(`${e.target.value}`, "DD/MM/YYYY").format("MM-DD-YYYY")
     );
-    console.log(list);
   }
   //cotação por dia
   useEffect(() => {
@@ -61,13 +64,13 @@ export default function App() {
   useEffect(() => {
     api
       .get(
-        `/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='${formatFirstDay}'&@dataFinalCotacao='${selectValue}'&$top=100&$format=json`
+        `/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='${formatFirstDay}'&@dataFinalCotacao='${formatFinalDay}'&$top=100&$format=json`
       )
       .then((response) => setPeriod(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
-  }, [formatFirstDay, selectValue]);
+  }, [formatFirstDay, formatFinalDay]);
 
   return (
     <div className="container">
@@ -75,7 +78,7 @@ export default function App() {
       <div>
         <h3>Pesquisa por data</h3>
         <form>
-          <input type={"date"} onChange={(e) => getDate(e)}></input>
+          <input type={"date"} onChange={(e) => getDay(e)}></input>
         </form>
 
         {day?.value.map((item) => {
@@ -104,14 +107,16 @@ export default function App() {
         </form>
 
         <div className="table">
+          {period ? (
+            <tr>
+              <th className="tableTitle">Data</th>
+              <th className="tableTitle">Compra</th>
+              <th className="tableTitle">Venda</th>
+            </tr>
+          ) : null}
           {period?.value.map((item) => {
             return (
               <div key={item.dataHoraCotacao} className="item">
-                <tr>
-                  <th className="tableTitle">Data</th>
-                  <th className="tableTitle">Compra</th>
-                  <th className="tableTitle">Venda</th>
-                </tr>
                 <tr>
                   <th className="date">
                     {moment(item?.dataHoraCotacao).format("DD/MM/YYYY")}
