@@ -10,3 +10,6 @@ Ao final do teste você deve publicar tudo no Github ou enviar um zip por email.
 <h3>Interface deve conter:</h3>
  <li>Cotação por data;</li>
 <li>Cotação por período (7, 14 e 21 dias)</li>
+
+<h4>Acesse</h4>
+<p> https://cotacaodolar.netlify.app/<p>
