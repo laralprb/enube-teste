@@ -1,38 +1,49 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Montserrat:wght@100;300&display=swap");
+
+body {
+  background-color: rgb(221, 221, 250);
+}
+.container {
+  background-color: rgb(241, 241, 248);
+  width: 700px;
+  margin: 50px auto;
   text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.table {
+  width: 400px;
+  margin: 50px auto;
+}
+.tableTitle {
+  background-color: rgb(201, 198, 198);
+  font-weight: 100;
+}
+.date {
+  background-color: rgb(201, 198, 198);
+}
+td,
+th {
+  border: 1px solid rgb(190, 190, 190);
+  padding: 10px;
+  width: 100px;
+  font-family: "Inconsolata", monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-family: "Montserrat", sans-serif;
+}
+h3 {
+  font-family: "Montserrat", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+P {
+  font-family: "Inconsolata", monospace;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input,
+select {
+  font-family: "Montserrat", sans-serif;
+  margin: 10px;
+  padding: 5px;
 }
