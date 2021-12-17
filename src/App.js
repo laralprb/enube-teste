@@ -38,7 +38,6 @@ export default function App() {
 
   function getInitialDate(e) {
     const getFirstDay = e.target.value;
-    alert("ATENÇÃO: Sábado e domingo não há cotação.");
     setFormatFirstDay(
       moment(`${getFirstDay}`, "YYYY-MM-DD").format("MM-DD-YYYY")
     );
@@ -127,6 +126,7 @@ export default function App() {
               </div>
             );
           })}
+          {period ? <p>ATENÇÃO: Sábado e domingo não há cotação.</p> : null}
         </div>
       </div>
     </div>
