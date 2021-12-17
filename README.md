@@ -1,4 +1,4 @@
-<h1>eNube.me Teste</h1>
+<h1>Cotação do dólar</h1>
 
 Esse teste tem como finalidade o desenvolvimento de uma interface para visualizar as
 cotações de dólar, consumindo diretamente da API do Banco Central do Brasil
