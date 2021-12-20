@@ -15,6 +15,7 @@ No diretório do projeto é necessário rodar:
 `npm install`
 
 Para rodar o projeto:
- `npm run start` 
+
+`npm run start` 
 
 Ele rodará no modo de desenvolvimento. Abra [http://localhost:3000](http://localhost:3000) para vê-lo em seu browser.
